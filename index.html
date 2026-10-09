@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#232620"><meta name="description" content="意式极简房屋360°交互设计：客厅书柜阳台一体布局、沙发茶区与厨房U型台面，支持手机拖动环视和房间切换。">
+  <title>意式极简 · 全景设计</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="viewer" aria-label="房屋360度全景">
+  <canvas id="panorama" aria-label="拖动查看房间的360度全景，可使用方向按钮和键盘方向键"></canvas>
+  <div class="shade top-shade"></div><div class="shade bottom-shade"></div>
+  <header>
+    <div class="brand"><span class="eyebrow">CASA / DESIGN STUDY</span><h1>意式极简<span>全景设计</span></h1><p>暖灰 · 浅石 · 烟熏胡桃</p></div>
+    <div class="header-actions"><button id="info" class="glass" aria-label="查看方案说明">方案说明</button><button id="clean" class="glass" aria-pressed="false" aria-label="隐藏界面查看完整全景">净览</button><button id="fullscreen" class="glass" aria-label="进入全屏">全屏</button></div>
+  </header>
+  <div class="mode-bar" role="group" aria-label="切换配色方案">
+    <button data-mode="design" aria-pressed="true">意式极简</button><button data-mode="original" aria-pressed="false">原稿</button><button data-mode="compare" aria-pressed="false">左右对比</button>
+  </div>
+  <div id="living-views" class="living-views" role="group" aria-label="客厅重点视角"><button class="glass" data-view="library" aria-pressed="true">书柜 / 阳台</button><button class="glass" data-view="tea" aria-pressed="false">沙发茶区</button><button class="glass" data-view="tv" aria-pressed="false">电视背景墙</button></div>
+  <div id="storage-controls" class="storage-controls"><button id="storage" class="glass" aria-pressed="false">查看电视收纳</button><span>右柜尺寸待确认</span></div>
+  <div id="status" role="status" aria-live="polite">正在载入客厅全景…</div>
+  <div id="load-error" role="alert" hidden><p>全景暂时未能加载。</p><button id="retry" class="glass">重新加载</button></div>
+  <div id="split-control" hidden><div class="split-line"><span>原稿</span><span>意式极简</span></div><label class="sr-only" for="split">对比分界位置</label><input type="range" id="split" min="10" max="90" value="50" aria-label="对比分界位置"></div>
+  <section class="room-caption" aria-label="当前房间"><span class="room-index" id="room-index">01 / 05</span><h2 id="room-name">客厅</h2><p id="view-hint">拖动环视 · 滚轮缩放</p></section>
+  <div class="view-tools" role="group" aria-label="全景视角控制"><button id="left" class="glass" aria-label="向左查看">←</button><button id="right" class="glass" aria-label="向右查看">→</button><button id="zoom-in" class="glass" aria-label="放大">＋</button><button id="zoom-out" class="glass" aria-label="缩小">－</button><button id="reset" class="glass">复位</button><button id="rotate" class="glass" aria-pressed="false">自动环视</button></div>
+  <nav id="rooms" aria-label="选择房间"></nav>
+  <footer><span>360° 设计概念预览</span><span id="load-state">AI 设计稿 · 原有布局为参照</span></footer>
+</main>
+<dialog id="details"><button id="close-info" class="dialog-close" aria-label="关闭说明">×</button><span class="eyebrow">DESIGN DIRECTION / 03</span><h2>书香与茶，把客厅连向阳台</h2><p>延续暖灰、浅石和胡桃木的意式极简色调，调整客厅家具布局，让书柜、阳台柜与日常茶区形成连续的生活空间。</p><div class="swatches"><div><i style="background:#ddd7cb"></i>暖灰墙面</div><div><i style="background:#c8c1b6"></i>浅石地面</div><div><i style="background:#50463b"></i>胡桃木柜体</div><div><i style="background:#bab1a4"></i>米灰织物</div></div><p><strong>书柜与阳台：</strong>书柜移至原沙发位置，柜体前沿与阳台墙垛齐平；阳台对应位置接同材柜体，弱化墙垛的视觉分隔。长条桌放在书柜前，保留阳台进出路径。</p><p><strong>沙发茶区：</strong>主沙发移至原书柜位置，L 拐角旁放单人沙发，主沙发前配小茶几和茶具。拐角墙挂字画「淡泊明志，宁静致远」。</p><p><strong>厨房：</strong>窗下水槽为后段，补齐左侧操作台，与原右侧台面组成 U 型。这里暂将你说的北侧理解为窗下水槽侧；图片未提供方位标注。</p><p><strong>电视背景墙：</strong>保留左低右高封闭柜、主画和局部照片搁板；点击「查看电视收纳」可查看右柜开门示意。</p><p class="note">柜深、桌椅与阳台通道、厨房 U 型台面的净宽，以及移动电视与支架尺寸均需实测确认。墙垛通过柜体衔接处理，效果稿保留原墙体。此 AI 全景为布局与氛围概念稿，不作为施工尺寸或结构依据。</p><p class="note">电脑：拖动、滚轮或方向按钮。手机：单指拖动、双指缩放；横屏观看视野更宽。点「书柜 / 阳台」「沙发茶区」「电视背景墙」直达重点位置，点下方卡片切换房间。「原稿」与「左右对比」用于同视角比较。</p></dialog>
+<script src="app.js"></script>
+</body></html>
+
